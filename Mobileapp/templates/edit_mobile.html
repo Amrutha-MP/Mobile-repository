@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<h1>hello</h1>-->
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Edit Mobiles</h4>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'update_mobile' mob_id=cat.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label>CompanyName</label>
+                      <select class="form-control" name="cname">
+                          <option>{{cat.CompanyName}}</option>
+                          {% for d in data %}
+                          <option>{{d.Company_Name}}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                      <div class="form-group">
+                      <label>Mobile_Name</label>
+                      <input type="text" class="form-control" value="{{cat.Mobile_Name}}" placeholder="Mobile_Name" name="mname">
+                    </div>
+                       <div class="form-group">
+                      <label>Price</label>
+                      <input type="text" class="form-control" value="{{cat.Price}}" placeholder="Price" name="price">
+                    </div>
+                       <div class="form-group">
+                      <label>Description</label>
+                      <input type="text" class="form-control"  value="{{cat.Description}}" placeholder="Description" name="description">
+                    </div>
+                       <div class="form-group">
+                      <label>Mobile_Image1</label>
+                           <img src="{{cat.Mobile_Image1.url}}" width="100px" height="100px">
+                      <input type="file" class="form-control" placeholder="Mobile_Image1" name="img1">
+                    </div>
+                       <div class="form-group">
+                      <label>Mobile_Image2</label>
+                            <img src="{{cat.Mobile_Image2.url}}" width="100px" height="100px">
+                      <input type="file" class="form-control" placeholder="Mobile_Image2" name="img2">
+                    </div>
+                       <div class="form-group">
+                      <label>Mobile_Image3</label>
+                            <img src="{{cat.Mobile_Image3.url}}" width="100px" height="100px">
+                      <input type="file" class="form-control"  placeholder="Mobile_Image3" name="img3">
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Update</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}
